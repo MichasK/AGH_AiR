@@ -26,3 +26,7 @@ title('Erozja diamond')
 subplot(2,2,4)
 imshow(ertka_erozja_disk);
 title('Erozja disk')
+
+figure('name','Erozja kwadrat 3 iteracje')
+ertka_erozja_3_iteracje = imerode(imerode(imerode(ertka,SE_square),SE_square),SE_square);
+imshow(ertka_erozja_3_iteracje);
