@@ -30,3 +30,42 @@ title('Erozja disk')
 figure('name','Erozja kwadrat 3 iteracje')
 ertka_erozja_3_iteracje = imerode(imerode(imerode(ertka,SE_square),SE_square),SE_square);
 imshow(ertka_erozja_3_iteracje);
+
+kolka = imread('pliki/kolka.bmp')
+buska = imread('pliki/buska.bmp');
+wyspa = imread('pliki/wyspa.bmp');
+SE_prawo = [0 0 1;0 1 0;1 0 0];
+SE_lewo = [1 0 0;0 1 0;0 0 1];
+buska_bez_wlosow_prawo=imerode(buska,SE_prawo);
+buska_bez_wlosow_lewo=imerode(buska,SE_lewo);
+figure('name','usun wlosy');
+subplot(3,1,1)
+imshow(buska)
+subplot(3,1,2)
+imshow(buska_bez_wlosow_prawo)
+subplot(3,1,3)
+imshow(buska_bez_wlosow_lewo)
+
+operacje_morfologiczne(ertka);
+operacje_morfologiczne(wyspa);
+operacje_morfologiczne(kolka);
+
+
+output = imerode(ertka,SE_square);
+output = imdilate(output,SE_square);
+output = imdilate(output,SE_square);
+figure('name','RT')
+imshow(output);
+
+
+hom = imread('pliki/hom.bmp');
+figure('name','hom')
+imshow(hom)
+
+SE1= [ 0 1 0; 1 1 1; 0 1 0];
+
+SE2= [ 1 0 1; 0 0 0; 1 0 1];
+
+output = bwhitmiss(hom,SE1,SE2);
+figure('name','hom bwhitmiss')
+imshow(output)
