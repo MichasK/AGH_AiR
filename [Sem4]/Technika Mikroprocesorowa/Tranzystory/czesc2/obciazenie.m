@@ -20,14 +20,14 @@ figure(1)
  plot(Uce1,Ic1,'*','DisplayName','Punkt pracy dla I_{B1}=I_{c}/B')
  coefficients = polyfit([Uce1 5], [ Ic1 0], 1);
  hold on;
- plot(x,coefficients (1)*x+coefficients (2));
+ plot(x,coefficients (1)*x+coefficients (2),'DisplayName','Prosta obci¹¿enia (1)');
 plot(Uce2,Ic2,'*','DisplayName','Punkt pracy dla I_{B1}=2*I_{c}/B')
 coefficients = polyfit([Uce2 5], [ Ic2 0], 1);
-plot(x,coefficients (1)*x+coefficients (2));
+plot(x,coefficients (1)*x+coefficients (2),'DisplayName','Prosta obci¹¿enia (2)');
 plot(Uce3,Ic3,'*','DisplayName','Punkt pracy dla I_{B1}=4*I_{c}/B')
 coefficients = polyfit([Uce3 5], [ Ic3 0], 1);
-plot(x,coefficients (1)*x+coefficients (2));
-plot(Uce6-0.02,Ic6)
+plot(x,coefficients (1)*x+coefficients (2),'DisplayName','Prosta obci¹¿enia (3)');
+%plot(Uce6-0.02,Ic6)
 
 
 grid on;
