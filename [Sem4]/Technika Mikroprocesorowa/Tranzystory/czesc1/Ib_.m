@@ -10,7 +10,7 @@ Ube_model = xlsread('Dane/uklad1.xlsx','D2:D22');
 figure(1)
 plot(Ube,Ib,'DisplayName','I_b');
 hold on;
-plot(Ube_model,-Ib_model,'DisplayName','Ib_model');
+plot(Ube_model,-Ib_model,'DisplayName','Ib_{model}');
 legend show;
 grid on
 legend('Location','best')
