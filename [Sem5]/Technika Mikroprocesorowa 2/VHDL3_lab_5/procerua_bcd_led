@@ -1,25 +1,72 @@
-procedure convertBDCto7seg(variable BCD :integer;
+----------------------------------------------------------------------------------
+-- Company:
+-- Engineer:
+--
+-- Create Date: 14.11.2018 13:08:24
+-- Design Name:
+-- Module Name: krzyszczuk - Behavioral
+-- Project Name:
+-- Target Devices:
+-- Tool Versions:
+-- Description:
+--
+-- Dependencies:
+--
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+--
+----------------------------------------------------------------------------------
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity krzyszczuk is
+    Port ( SW : in STD_LOGIC_VECTOR (3 downto 0); --Wektor przełączników
+           SEG : out STD_LOGIC_VECTOR (6 downto 0); --Wektor wyświetlacza 7-s.
+                DP : out STD_LOGIC;
+                    AN : out STD_LOGIC_VECTOR (7 downto 0)); --Wektor wyboru segmentu
+                    
+end krzyszczuk;
+
+architecture Behavioral of krzyszczuk is
+procedure convertBDCto7seg(signal BCD :STD_LOGIC_VECTOR (3 downto 0);
 signal seg7: out STD_LOGIC_VECTOR (6 downto 0)) is
 variable tmp_display : STD_LOGIC_VECTOR (6 downto 0);-- kodowanie gfedcba wspolna anoda
 begin
   case BCD is
-    when "0000" => tmp_display <= "1000000";  --1
-    when "0001" => tmp_display <= "1111001";
-    when "0010" => tmp_display <= "0100100";
-    when "0011" => tmp_display <= "0110000";
-    when "0100" => tmp_display <= "0011001";
-    when "0101" => tmp_display <= "0010010";
-    when "0110" => tmp_display <= "0000010";
-    when "0111" => tmp_display <= "1011000";
-    when "1000" => tmp_display <= "0000000";
-    when "1001" => tmp_display <= "0010000";  --9
-    when "1010" => tmp_display <= "0001000";
-    when "1011" => tmp_display <= "0000011";
-    when "1100" => tmp_display <= "1000110";
-    when "1101" => tmp_display <= "0100001";
-    when "1110" => tmp_display <= "0000110";
-    when "1111" => tmp_display <= "0001110";
-    when others => tmp_display <= "1111111"; --Pusty wyświetlacz
+    when "0000" => tmp_display := "1000000";  --1
+    when "0001" => tmp_display := "1111001";
+    when "0010" => tmp_display := "0100100";
+    when "0011" => tmp_display := "0110000";
+    when "0100" => tmp_display := "0011001";
+    when "0101" => tmp_display := "0010010";
+    when "0110" => tmp_display := "0000010";
+    when "0111" => tmp_display := "1011000";
+    when "1000" => tmp_display := "0000000";
+    when "1001" => tmp_display := "0010000";  --9
+    when "1010" => tmp_display := "0001000";
+    when "1011" => tmp_display := "0000011";
+    when "1100" => tmp_display := "1000110";
+    when "1101" => tmp_display := "0100001";
+    when "1110" => tmp_display := "0000110";
+    when "1111" => tmp_display := "0001110";
+    when others => tmp_display := "1111111"; --Pusty wyświetlacz
   end case;
   seg7 <= tmp_display;
-end convertBDCto7seg
+end convertBDCto7seg;
+begin
+    DP <= '0';
+    AN <= "00000000";
+    convertBDCto7seg(SW,SEG);
+end Behavioral;
