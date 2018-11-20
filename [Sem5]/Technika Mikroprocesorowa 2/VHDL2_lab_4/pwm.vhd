@@ -38,11 +38,12 @@ entity krzyszczuk is
 end krzyszczuk;
 
 architecture Behavioral of krzyszczuk is
-variable okres: integer :=10000; --10 000
-variable wypelnienie: integer := (okres/100); --dioda 0 bd swiecic ciemniej
-variable wypelnienie_bis: integer := (okres/1.001); --dioda 1 bd swiecic jasniej
+
 begin
 process (CLK100MHZ)
+variable okres: integer :=10000; --10 000
+variable wypelnienie: integer := (okres/100); --dioda 0 bd swiecic ciemniej
+variable wypelnieniee: integer := (okres/10); --dioda 0 bd swiecic ciemniej
   variable counter: integer := 0;
   begin
   if (rising_edge(CLK100MHZ)) then
@@ -51,11 +52,11 @@ process (CLK100MHZ)
     else
       LED(0) <= '0';
     end if;
-    if(counter<wypelnienie_bis) then
-      LED(1) <= '1';
-    else
-      LED(1) <= '0';
-    end if;
+    if(counter<wypelnieniee) then
+          LED(1) <= '1';
+        else
+          LED(1) <= '0';
+        end if;
     if (counter=okres) then
       counter := 0;
     else
