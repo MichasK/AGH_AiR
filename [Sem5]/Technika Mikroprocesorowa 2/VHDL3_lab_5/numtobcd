@@ -1,0 +1,25 @@
+procedure convertNUMto7seg(signal liczba :integer;
+      signal SEG: out STD_LOGIC_VECTOR (6 downto 0)) is
+      signal tmp : STD_LOGIC_VECTOR (6 downto 0);
+  begin
+    case liczba is
+                  when 0 => tmp := "1000000";
+                  when 1 => tmp := "1111001";
+                  when 2 => tmp := "0100100";
+                  when 3 => tmp := "0110000";
+                  when 4 => tmp := "0011001";
+                  when 5 => tmp := "0010010";
+                  when 6 => tmp := "0000010";
+                  when 7 => tmp := "1011000";
+                  when 8 => tmp := "0000000";
+                  when 9 => tmp := "0010000";
+                  when 10 => tmp := "0001000";
+                  when 11 => tmp := "0000011";
+                  when 12 => tmp := "1000110";
+                  when 13 => tmp := "0100001";
+                  when 14 => tmp := "0000110";
+                  when 15 => tmp := "0001110";
+                  when others => tmp := "1111111";
+      end case;
+      SEG <= tmp;
+end convertNUMto7seg;
