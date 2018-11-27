@@ -1,0 +1,39 @@
+;TH1 = 256 - f/12*16*2^TMOD*BAUD
+
+
+org 0x00
+jmp INIT
+
+org 23h
+JMP IRR_SERIAL
+
+
+org 0x30
+INIT:
+    orl PCON,#0x80 ; SMOD=1
+    mov SCON,#0x50 ; predkosc wyliczana z licznika
+    mov TMOD,#0x20 ; timer Use only the TLX register as an 8-bit counter.
+    mov TH1,#0xFB ; ;251
+    mov TL1,#0xFB ; ;251
+    setb TR1 ;timer 1 on
+    SETB EA; enable all interupt
+    SETB ES ; enable serial interput
+    SETB TI ; call first interr
+
+MAIN:
+JMP Main
+
+IRR_SERIAL:
+   JB TI, SEND;
+   JB RI, READ;
+
+READ:
+    CLR RI
+    RETI
+SEND:
+    mov SBUF, #67 ; wyslij C
+    CLR TI; clear flag
+    RETI
+END
+
+
