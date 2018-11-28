@@ -30,18 +30,20 @@ SEND:
 READ:
    CLR RI ; clear Ri
    MOV R0,SBUF ;
-   CJNE R0, #47, GREATER_CONDITION ; 47 is / 48 is 0 when R0<47 JNC:= 0 when R0>48 JNC:=1
+   ;; if x1!=x2 jump to GREATER_CONDITION
+   CJNE R0, #47, GREATER_CONDITION ; 47 is /             48 is 0              when R0<47 JNC:= 0 when R0>48 JNC:=1
 RETI
 
 GREATER_CONDITION:
-   JNC IS_GREATER;
+   JNC IS_GREATER; ;IF FLAG is set x2>x1
 RETI
 
 IS_GREATER:
-    CJNE R0, #58, SMALLER_CONDITION ; 58 is : / 57 is 9 when R0<58 JNC:= 0 when R0>58 JNC:=1
+	; JMP  to SMALLER_CONDITION i x1!=x2
+    CJNE R0, #58, SMALLER_CONDITION ; 58 is :        57 is 9               when R0<58          JNC:= 0 when R0>58 JNC:=1
 
 SMALLER_CONDITION:
-   JNC TO_BIG_END
+   JNC TO_BIG_END ; R0 > 58 JMP to END
    MOV SBUF,R0;
 RETI
 
@@ -49,3 +51,4 @@ TO_BIG_END:
 RETI
 
 END
+
