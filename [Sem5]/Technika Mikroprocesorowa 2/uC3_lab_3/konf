@@ -15,6 +15,10 @@ INIT:
 MAIN:
     mov SBUF,#65
     call WAIT ;
+    ;alternatywa
+    ;MOV SBUF, #23H; send the first byte down the serial line
+    ;JNB TI, $; wait for the entire byte to be sent
+    ;CLR TI; the transmit interrupt flag is set by hardware but must be cleared by software 
 JMP Main
 
 WAIT:
