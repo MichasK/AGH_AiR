@@ -7,8 +7,8 @@ INIT:
     orl PCON,#10000000b ; SMOD=1
     mov SCON,#0x50 ; predkosc wyliczana z licznika
     mov TMOD,#0x20 ; timer Use only the TLX register as an 8-bit counter.
-    mov TH1,#0xFB ; ;251
-    mov TL1,#0xFB ; ;251
+    mov TH1,#245 ; ;251
+    mov TL1,#245 ; ;251
     setb TR1 ;timer 1 on
     mov R0,#255 ; first delay
 
