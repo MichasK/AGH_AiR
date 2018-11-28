@@ -4,7 +4,7 @@ jmp INIT
 
 org 0x30
 INIT:
-    orl PCON,#0x80 ; SMOD=1
+    orl PCON,#10000000b ; SMOD=1
     mov SCON,#0x50 ; predkosc wyliczana z licznika
     mov TMOD,#0x20 ; timer Use only the TLX register as an 8-bit counter.
     mov TH1,#0xFB ; ;251
