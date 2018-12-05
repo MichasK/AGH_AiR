@@ -1,0 +1,40 @@
+Jak uruchomic pierwszy projekt ? 
+1.cube mix uruchom
+new project 
+board selector
+type of board nucleo 64
+mcu series f4 na koncu
+sprawdz naklejke to jest 410, double click, ignor
+project->settinght-> 
+IDE=sw4stm32
+workspace /home/student/worspace/
+project name _nazwa
+code generator
+ zaznacz generate peripheral initializastion 
+click ok
+save
+mamy gotowy szablon projektu
+project -> generate code click open folder/close
+*.ioc - plik projektu
+open system workbench !!!!!
+wybierz workspace !!!!!
+zamknij projekt poprzedni
+ppm w opszarze project -> import general existin project to workspace
+szukam lokalizacji mojego projektu jak jestem w moj3 klikam okej.
+defaultowe ustawienia ok
+
+otwieram Main i mozna edytowac <3
+po edytowaniu trzeba refresh !
+click lewy pb6 gpio
+pozniej add label
+zapis
+generuj jeszcze raz
+===========
+pisze sie program
+ctrl+b
+Czesc programowani
+najedzam na nazwe programu
+menu target program cheep
+reset after program
+ok
+tim9 internal clock configuration enable przerwania od tego timera
