@@ -1,5 +1,9 @@
 clear all
 close all
+%%
+% 
+% $$e^{\pi i} + 1 = 0$$
+% 
 
 
 imfinfo('lena/lena.bmp')

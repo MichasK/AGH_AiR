@@ -1,0 +1,372 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Total</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-05"><meta name="DC.source" content="Total.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear <span class="string">all</span>
+close <span class="string">all</span>
+</pre><p><img src="Total_eq17467035999183504765.png" alt="$$e^{\pi i} + 1 = 0$$" style="width:69px;height:15px;"></p><pre class="codeinput">imfinfo(<span class="string">'lena/lena.bmp'</span>)
+imfinfo(<span class="string">'lena/lena.jpg'</span>)
+
+
+lena1 = imread(<span class="string">'lena/lena.bmp'</span>);
+lena2 = imread(<span class="string">'lena/lena.jpg'</span>);
+
+figure(1)
+imshow(lena1);
+figure(2)
+imshow(lena2);
+lena2gray=rgb2gray(lena2);
+figure(3)
+imshow(lena2gray);
+imwrite(lena2gray,<span class="string">'lena_gray.bmp'</span>);
+figure(4)
+colormap <span class="string">gray</span>
+figure(4)
+mesh(lena2gray);
+figure(5)
+plot(lena2gray(5,:));
+figure(6);
+plot(lena2gray(:,3));
+
+<span class="comment">% OBRAZY INDEKSOWANE</span>
+
+<span class="comment">% close all</span>
+<span class="comment">% clear all</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% lenaGray = imread('lena_gray.bmp')</span>
+<span class="comment">% [X, map] = gray2ind(lenaGray, 256);</span>
+<span class="comment">% X</span>
+<span class="comment">% map</span>
+<span class="comment">% figure(1)</span>
+<span class="comment">% imshow(X,map)</span>
+<span class="comment">% figure(2)</span>
+<span class="comment">% imshow(lenaGray)</span>
+<span class="comment">% figure(3)</span>
+<span class="comment">% imshow(X,spring)</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">%</span>
+<span class="comment">% ========================================</span>
+
+
+
+close <span class="string">all</span>
+clear <span class="string">all</span>
+
+<span class="comment">%RGB</span>
+
+
+lena =imread(<span class="string">'lena.bmp'</span>)
+R = lena(:,:,1); G = lena(:,:,2); B = lena(:,:,3);
+figure(3);
+subplot(2,2,1);
+imshow(lena);
+title(<span class="string">'Oryginal'</span>);
+subplot(2,2,2);
+imshow(R);
+title(<span class="string">'R'</span>);
+subplot(2,2,3);
+imshow(G);
+title(<span class="string">'G'</span>);
+subplot(2,2,4);
+imshow(B);
+title(<span class="string">'B'</span>);
+
+<span class="comment">%HSV</span>
+
+
+lenaHSV = rgb2hsv(lena)
+Hue = lenaHSV(:,:,1)
+Saturation = lenaHSV(:,:,2)
+Value= lenaHSV (:,:,3)
+
+figure(4);
+subplot(2,2,1);
+imshow(lenaHSV);
+title(<span class="string">'Oryginal'</span>);
+subplot(2,2,2);
+imshow(Hue);
+title(<span class="string">'Hue'</span>);
+subplot(2,2,3);
+imshow(Saturation);
+title(<span class="string">'Saturation'</span>);
+subplot(2,2,4);
+imshow(Value);
+title(<span class="string">'Value'</span>);
+
+
+
+<span class="comment">%YCbCr</span>
+
+lenaYCbCr = rgb2ycbcr(lena)
+Y = lenaYCbCr(:,:,1)
+Cb = lenaYCbCr(:,:,2)
+Cr = lenaYCbCr(:,:,3)
+figure(5)
+subplot(2,2,1);
+imshow(lenaYCbCr);
+title(<span class="string">'Oryginal'</span>);
+subplot(2,2,2);
+imshow(Y);
+title(<span class="string">'Y'</span>);
+subplot(2,2,3);
+imshow(Cb);
+title(<span class="string">'Cb'</span>);
+subplot(2,2,4);
+imshow(Cr);
+title(<span class="string">'Cr'</span>);
+</pre><pre class="codeoutput">
+ans = 
+
+  struct with fields:
+
+              Filename: 'D:\Nauka\AGH_AiR\[Sem4]\Systemy Wizyjne\LAB1.Matlab  - wprowadzenie\lena\lena.bmp'
+           FileModDate: '09-Oct-2018 00:08:15'
+              FileSize: 786486
+                Format: 'bmp'
+         FormatVersion: 'Version 3 (Microsoft Windows 3.x)'
+                 Width: 512
+                Height: 512
+              BitDepth: 24
+             ColorType: 'truecolor'
+       FormatSignature: 'BM'
+    NumColormapEntries: 0
+              Colormap: []
+               RedMask: []
+             GreenMask: []
+              BlueMask: []
+       ImageDataOffset: 54
+      BitmapHeaderSize: 40
+             NumPlanes: 1
+       CompressionType: 'none'
+            BitmapSize: 0
+        HorzResolution: 2677
+        VertResolution: 2677
+         NumColorsUsed: 0
+    NumImportantColors: 0
+
+
+ans = 
+
+  struct with fields:
+
+           Filename: 'D:\Nauka\AGH_AiR\[Sem4]\Systemy Wizyjne\LAB1.Matlab  - wprowadzenie\lena\lena.jpg'
+        FileModDate: '09-Oct-2018 00:08:15'
+           FileSize: 67781
+             Format: 'jpg'
+      FormatVersion: ''
+              Width: 256
+             Height: 256
+           BitDepth: 24
+          ColorType: 'truecolor'
+    FormatSignature: ''
+    NumberOfSamples: 3
+       CodingMethod: 'Huffman'
+      CodingProcess: 'Sequential'
+            Comment: {}
+        Orientation: 1
+        XResolution: 200
+        YResolution: 200
+     ResolutionUnit: 'Inch'
+           Software: 'Adobe Photoshop CS2 Windows'
+           DateTime: '2009:07:14 11:31:03'
+      DigitalCamera: [1&times;1 struct]
+      ExifThumbnail: [1&times;1 struct]
+
+</pre><pre class="codeoutput error">Error using imread&gt;get_full_filename (line 568)
+File "lena.bmp" does not exist.
+
+Error in imread (line 377)
+    fullname = get_full_filename(filename);
+
+Error in Total (line 62)
+lena =imread('lena.bmp')
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear all
+close all
+%%
+% 
+% $$e^{\pi i} + 1 = 0$$
+% 
+
+
+imfinfo('lena/lena.bmp')
+imfinfo('lena/lena.jpg')
+
+
+lena1 = imread('lena/lena.bmp');
+lena2 = imread('lena/lena.jpg');
+
+figure(1)
+imshow(lena1);
+figure(2)
+imshow(lena2);
+lena2gray=rgb2gray(lena2);
+figure(3)
+imshow(lena2gray);
+imwrite(lena2gray,'lena_gray.bmp');
+figure(4)
+colormap gray
+figure(4)
+mesh(lena2gray);
+figure(5)
+plot(lena2gray(5,:));
+figure(6);
+plot(lena2gray(:,3));
+
+% OBRAZY INDEKSOWANE
+
+% close all
+% clear all
+% 
+% 
+% lenaGray = imread('lena_gray.bmp')
+% [X, map] = gray2ind(lenaGray, 256);
+% X
+% map
+% figure(1)
+% imshow(X,map)
+% figure(2)
+% imshow(lenaGray)
+% figure(3)
+% imshow(X,spring)
+% 
+%  
+% 
+% ========================================
+
+ 
+
+close all
+clear all
+
+%RGB
+
+
+lena =imread('lena.bmp')
+R = lena(:,:,1); G = lena(:,:,2); B = lena(:,:,3);
+figure(3);
+subplot(2,2,1);
+imshow(lena);
+title('Oryginal');
+subplot(2,2,2);
+imshow(R);
+title('R');
+subplot(2,2,3);
+imshow(G);
+title('G');
+subplot(2,2,4);
+imshow(B);
+title('B');
+
+%HSV
+
+
+lenaHSV = rgb2hsv(lena)
+Hue = lenaHSV(:,:,1)
+Saturation = lenaHSV(:,:,2)
+Value= lenaHSV (:,:,3)
+
+figure(4);
+subplot(2,2,1);
+imshow(lenaHSV);
+title('Oryginal');
+subplot(2,2,2);
+imshow(Hue);
+title('Hue');
+subplot(2,2,3);
+imshow(Saturation);
+title('Saturation');
+subplot(2,2,4);
+imshow(Value);
+title('Value');
+
+ 
+
+%YCbCr
+
+lenaYCbCr = rgb2ycbcr(lena)
+Y = lenaYCbCr(:,:,1)
+Cb = lenaYCbCr(:,:,2)
+Cr = lenaYCbCr(:,:,3)
+figure(5)
+subplot(2,2,1);
+imshow(lenaYCbCr);
+title('Oryginal');
+subplot(2,2,2);
+imshow(Y);
+title('Y');
+subplot(2,2,3);
+imshow(Cb);
+title('Cb');
+subplot(2,2,4);
+imshow(Cr);
+title('Cr');
+##### SOURCE END #####
+--></body></html>

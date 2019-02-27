@@ -1,0 +1,417 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Total</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-05"><meta name="DC.source" content="Total.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">close <span class="string">all</span>;
+clear <span class="string">all</span>;
+
+
+lena100 = imread(<span class="string">'lena100.bmp'</span>);
+figure(1)
+imshow(lena100)
+figure(2)
+imshow(imresize(lena100,2,<span class="string">'nearest'</span>))
+figure(3)
+imshow(imresize(lena100,2,<span class="string">'bilinear'</span>))
+figure(4)
+imshow(imresize(lena100,2,<span class="string">'bicubic'</span>))
+
+pause;
+close <span class="string">all</span>;
+
+chessboard = imread(<span class="string">'szachownica.bmp'</span>);
+
+chessboardNearest = imresize(chessboard,10,<span class="string">'nearest'</span>);
+chessboardBilinear = imresize(chessboard,10,<span class="string">'bilinear'</span>);
+chessboardBicubic = imresize(chessboard,10,<span class="string">'bicubic'</span>);
+
+chessboardNearest = imresize(chessboardNearest,0.625,<span class="string">'nearest'</span>);
+chessboardBilinear = imresize(chessboardBilinear,0.625,<span class="string">'bilinear'</span>);
+chessboardBicubic = imresize(chessboardBicubic,0.625,<span class="string">'bicubic'</span>);
+
+figure(1)
+imshow(chessboard)
+title(<span class="string">'Basic'</span>)
+figure(2)
+imshow(chessboardNearest)
+title(<span class="string">'Nearest-neighbor interpolation'</span>)
+figure(3)
+imshow(chessboardBilinear)
+title(<span class="string">'Bilinear interpolation'</span>)
+figure(4)
+imshow(chessboardBicubic)
+title(<span class="string">'Bicubic interpolation'</span>)
+
+pause;
+close <span class="string">all</span>;
+
+
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+
+lena = imread(<span class="string">'lena.bmp'</span>);
+
+lena256 = imresize(lena,[256 256]);
+lena64 = imresize(lena,[64 64]);
+lena128 = imresize(lena,[128 128]);
+
+figure(1)
+imshow(lena64,<span class="string">'InitialMagnification'</span>,800)
+title(<span class="string">'64x64'</span>);
+figure(2)
+imshow(lena128,<span class="string">'InitialMagnification'</span>,400)
+title(<span class="string">'128x128'</span>)
+figure(3)
+imshow(lena256,<span class="string">'InitialMagnification'</span>,200)
+title(<span class="string">'256x256'</span>)
+figure(4)
+imshow(lena)
+title(<span class="string">'Basic'</span>);
+
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+
+lena = imread(<span class="string">'lena.bmp'</span>);
+
+A = imrotate(lena,45);
+imshow(A);
+close <span class="string">all</span>;
+
+chessboard = imread(<span class="string">'szachownica.bmp'</span>);
+
+chessboard_rotated_nearest = imrotate(chessboard,-45),<span class="string">'nearest'</span>;
+chessboard_rotated_bilinear = imrotate(chessboard,-45,<span class="string">'bilinear'</span>);
+chessboard_rotated_bicubic = imrotate(chessboard,-45,<span class="string">'bicubic'</span>);
+
+subplot(4,1,1)
+imshow(chessboard);
+title(<span class="string">'Basic'</span>);
+subplot(4,1,2)
+imshow(chessboard_rotated_nearest);
+title(<span class="string">'chessboard rotated nearest'</span>);
+subplot(4,1,3)
+imshow(chessboard_rotated_bilinear);
+title(<span class="string">'chessboard rotated bilinear'</span>);
+subplot(4,1,4)
+imshow(chessboard_rotated_bicubic);
+title(<span class="string">'chessboard rotated bicubic'</span>);
+
+<span class="comment">%Bicubic</span>
+theta = -45;
+scale = [0.5 0 0; 0 0.5 0; 0 0 1 ];
+rotate = [cosd(theta) sind(theta) 0;-sind(theta) cosd(theta) 0; 0 0 1]*scale;
+tform = affine2d(rotate);
+B=imwarp(lena,tform);
+figure(2)
+imshow(B)
+title(<span class="string">'Rotated 1/2'</span>);
+translatedLena = imtranslate(lena,[10 25]);
+figure(3)
+imshow(translatedLena);
+
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+
+
+lena = imread(<span class="string">'lena.bmp'</span>);
+lena = imresize(lena, [128 128]);
+lena0_31 = imadjust(lena,[],[0 0.08]);
+lena0_15 = imadjust(lena,[],[0 0.17]);
+lena0_7 = imadjust(lena,[],[0 0.36]);
+lena0_3 = imadjust(lena,[],[0 0.85]);
+lena0_1 = imadjust(lena,[],[0 0.225]);
+
+subplot(3,3,1);
+imshow(lena,[]);
+title(<span class="string">'Original'</span>);
+
+subplot(3,3,2);
+imshow(lena0_31,[]);
+title(<span class="string">'lena0_31'</span>);
+
+subplot(3,3,3);
+imshow(lena0_15,[]);
+title(<span class="string">'lena0_15'</span>);
+
+subplot(3,3,4);
+imshow(lena0_7,[]);
+title(<span class="string">'lena0_7'</span>);
+
+subplot(3,3,5);
+imshow(lena0_3,[]);
+title(<span class="string">'lena0_3'</span>);
+
+subplot(3,3,6);
+imshow(lena0_1,[]);
+title(<span class="string">'lena0_1'</span>);
+</pre><pre class="codeoutput">
+chessboard_rotated_nearest =
+
+  23&times;23 uint8 matrix
+
+  Columns 1 through 13
+
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+     0     0     0     0     0     0     0     0     0     0   255   255   255
+     0     0     0     0     0     0     0     0   255     0   255   255   255
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+     0     0     0     0     0     0     0   255   255     0     0   255     0
+     0     0     0     0     0   255     0   255   255   255   255   255   255
+     0     0     0     0   255     0     0     0   255     0     0   255     0
+     0     0     0     0   255     0     0     0   255     0     0   255     0
+     0     0   255   255   255   255     0   255   255     0   255   255   255
+     0   255     0     0   255   255     0   255   255     0     0   255   255
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+     0   255     0     0   255   255     0   255   255     0     0   255     0
+     0     0   255   255   255   255     0   255   255   255   255   255   255
+     0     0     0     0   255     0     0     0   255     0     0   255     0
+     0     0     0     0   255     0     0     0   255     0     0   255     0
+     0     0     0     0     0   255   255   255   255   255   255   255   255
+     0     0     0     0     0     0     0   255   255     0     0   255     0
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+     0     0     0     0     0     0     0     0   255     0   255   255   255
+     0     0     0     0     0     0     0     0     0     0   255   255   255
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+     0     0     0     0     0     0     0     0     0     0     0   255     0
+
+  Columns 14 through 23
+
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0   255     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0   255   255     0     0     0     0     0     0     0
+   255   255   255   255   255     0     0     0     0     0
+     0   255   255     0     0   255     0     0     0     0
+     0     0     0     0     0   255     0     0     0     0
+     0   255   255     0   255   255   255   255     0     0
+     0   255   255     0   255   255     0     0   255     0
+     0     0     0     0     0     0     0     0     0     0
+     0   255   255     0   255   255     0     0   255     0
+   255   255   255     0   255   255   255   255     0     0
+     0   255     0     0     0   255     0     0     0     0
+     0   255     0     0     0   255     0     0     0     0
+   255   255   255     0   255     0     0     0     0     0
+     0   255   255     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0   255     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+</pre><img vspace="5" hspace="5" src="Total_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+close all;
+clear all;
+
+
+lena100 = imread('lena100.bmp');
+figure(1)
+imshow(lena100)
+figure(2)
+imshow(imresize(lena100,2,'nearest'))
+figure(3)
+imshow(imresize(lena100,2,'bilinear'))
+figure(4)
+imshow(imresize(lena100,2,'bicubic'))
+
+pause;
+close all;
+
+chessboard = imread('szachownica.bmp');
+
+chessboardNearest = imresize(chessboard,10,'nearest');
+chessboardBilinear = imresize(chessboard,10,'bilinear');
+chessboardBicubic = imresize(chessboard,10,'bicubic');
+
+chessboardNearest = imresize(chessboardNearest,0.625,'nearest');
+chessboardBilinear = imresize(chessboardBilinear,0.625,'bilinear');
+chessboardBicubic = imresize(chessboardBicubic,0.625,'bicubic');
+
+figure(1)
+imshow(chessboard)
+title('Basic')
+figure(2)
+imshow(chessboardNearest)
+title('Nearest-neighbor interpolation')
+figure(3)
+imshow(chessboardBilinear)
+title('Bilinear interpolation')
+figure(4)
+imshow(chessboardBicubic)
+title('Bicubic interpolation')
+
+pause;
+close all;
+
+
+close all;
+clear all;
+
+lena = imread('lena.bmp');
+
+lena256 = imresize(lena,[256 256]);
+lena64 = imresize(lena,[64 64]);
+lena128 = imresize(lena,[128 128]);
+
+figure(1)
+imshow(lena64,'InitialMagnification',800)
+title('64x64');
+figure(2)
+imshow(lena128,'InitialMagnification',400)
+title('128x128')
+figure(3)
+imshow(lena256,'InitialMagnification',200)
+title('256x256')
+figure(4)
+imshow(lena)
+title('Basic');
+
+close all;
+clear all;
+
+lena = imread('lena.bmp');
+
+A = imrotate(lena,45);
+imshow(A);
+close all;
+
+chessboard = imread('szachownica.bmp');
+
+chessboard_rotated_nearest = imrotate(chessboard,-45),'nearest';
+chessboard_rotated_bilinear = imrotate(chessboard,-45,'bilinear');
+chessboard_rotated_bicubic = imrotate(chessboard,-45,'bicubic');
+
+subplot(4,1,1)
+imshow(chessboard);
+title('Basic');
+subplot(4,1,2)
+imshow(chessboard_rotated_nearest);
+title('chessboard rotated nearest');
+subplot(4,1,3)
+imshow(chessboard_rotated_bilinear);
+title('chessboard rotated bilinear');
+subplot(4,1,4)
+imshow(chessboard_rotated_bicubic);
+title('chessboard rotated bicubic');
+
+%Bicubic
+theta = -45;
+scale = [0.5 0 0; 0 0.5 0; 0 0 1 ];
+rotate = [cosd(theta) sind(theta) 0;-sind(theta) cosd(theta) 0; 0 0 1]*scale;
+tform = affine2d(rotate);
+B=imwarp(lena,tform);
+figure(2)
+imshow(B)
+title('Rotated 1/2');
+translatedLena = imtranslate(lena,[10 25]);
+figure(3)
+imshow(translatedLena);
+
+close all;
+clear all;
+
+
+lena = imread('lena.bmp');
+lena = imresize(lena, [128 128]);
+lena0_31 = imadjust(lena,[],[0 0.08]);
+lena0_15 = imadjust(lena,[],[0 0.17]);
+lena0_7 = imadjust(lena,[],[0 0.36]);
+lena0_3 = imadjust(lena,[],[0 0.85]);
+lena0_1 = imadjust(lena,[],[0 0.225]);
+
+subplot(3,3,1);
+imshow(lena,[]);
+title('Original');
+
+subplot(3,3,2);
+imshow(lena0_31,[]);
+title('lena0_31');
+ 
+subplot(3,3,3);
+imshow(lena0_15,[]);
+title('lena0_15');
+ 
+subplot(3,3,4);
+imshow(lena0_7,[]);
+title('lena0_7');
+ 
+subplot(3,3,5);
+imshow(lena0_3,[]);
+title('lena0_3');
+ 
+subplot(3,3,6);
+imshow(lena0_1,[]);
+title('lena0_1');
+
+
+
+
+##### SOURCE END #####
+--></body></html>

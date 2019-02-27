@@ -1,0 +1,506 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Total</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-02-05"><meta name="DC.source" content="Total.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput">clear <span class="string">all</span>;
+close <span class="string">all</span>;
+
+moon = imread(<span class="string">'Histogram/phobos.bmp'</span>);
+[moon_hist  x] = imhist(moon);
+[sizeX sizeY] = size(moon);
+
+
+<span class="comment">%%%%BBHE</span>
+mean_of_col = mean(moon);
+lm_bbhe = round(mean(mean_of_col));
+
+hist1_BBHE = moon_hist(1:lm_bbhe,:);
+hist2_BBHE = moon_hist(lm_bbhe+1:size(moon_hist),:);
+
+hist1_BBHE_cummulated = cumsum(hist1_BBHE);
+hist2_BBHE_cummulated = cumsum(hist2_BBHE);
+
+hist1_BBHE_normalised = hist1_BBHE_cummulated/max(hist1_BBHE_cummulated);
+hist2_BBHE_normalised = hist2_BBHE_cummulated/max(hist2_BBHE_cummulated);
+
+C1n = (lm_bbhe)*hist1_BBHE_normalised;
+C2n = lm_bbhe+1 + (255-lm_bbhe+1)*hist2_BBHE_normalised;
+lutBBHE = uint8([C1n; C2n]);
+
+phobosLUTBBHE = intlut(moon,lutBBHE);
+figure(<span class="string">'name'</span>,<span class="string">'BBHE'</span>);
+imshow(phobosLUTBBHE);
+
+
+<span class="comment">%%%%%DSIHE</span>
+
+
+ [valueDSIGE lm_DSIHE] = min( abs(cumsum(moon_hist)-(sizeX*sizeY/2)));
+
+
+<span class="comment">% szukamy poziomu jasno&#339;ci kt&oacute;ry odpowiada "po&sup3;owie" histogramu skumulowanego,</span>
+<span class="comment">% czyli jasno&#339;ci, dla kt&oacute;rej jest mniej wi&ecirc;cej tyle samo pikseli ja&#339;niejszych</span>
+<span class="comment">% co ciemniejszych.</span>
+hist1_DSIGE = moon_hist(1:lm_DSIHE,:);
+hist2_DSIGE = moon_hist(lm_DSIHE+1:size(moon_hist),:);
+
+hist1_DSIGE_cummulated = cumsum(hist1_DSIGE);
+hist2_DSIGE_cummulated = cumsum(hist2_DSIGE);
+
+hist1_DSIGE_normalised = hist1_DSIGE_cummulated/max(hist1_DSIGE_cummulated);
+hist2_DSIGE_normalised = hist2_DSIGE_cummulated/max(hist2_DSIGE_cummulated);
+
+C1n = (lm_DSIHE)*hist1_DSIGE_normalised;
+C2n = lm_DSIHE+1 + (255-lm_DSIHE+1)*hist2_DSIGE_normalised;
+lutDSIGE = uint8([C1n; C2n]);
+
+phobosLUTDSIGE = intlut(moon,lutDSIGE);
+figure(<span class="string">'name'</span>,<span class="string">'DSIGE'</span>);
+imshow(phobosLUTDSIGE);
+
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+
+figure(1)
+lena1 = imread(<span class="string">'Histogram/lena1.bmp'</span>);
+lena2 = imread(<span class="string">'Histogram/lena2.bmp'</span>);
+lena3 = imread(<span class="string">'Histogram/lena3.bmp'</span>);
+lena4 = imread(<span class="string">'Histogram/lena4.bmp'</span>);
+subplot(4,2,1);
+imshow(lena1);
+title(<span class="string">'lena1'</span>);
+subplot(4,2,2);
+imhist(lena1,256);
+
+subplot(4,2,3);
+imshow(lena2);
+title(<span class="string">'lena2'</span>);
+subplot(4,2,4);
+imhist(lena2,256);
+
+subplot(4,2,5);
+imshow(lena3);
+title(<span class="string">'lena3'</span>);
+subplot(4,2,6);
+imhist(lena3,256);
+
+subplot(4,2,7);
+imshow(lena4);
+title(<span class="string">'lena4'</span>);
+subplot(4,2,8);
+imhist(lena4,256);
+
+hist1 = imread(<span class="string">'Histogram/hist1.bmp'</span>);
+figure(2)
+subplot(2,2,1);
+imshow(hist1);
+subplot(2,2,3);
+imhist(hist1,256);
+
+adjusted = imadjust(hist1);
+subplot(2,2,2);
+imshow(adjusted);
+subplot(2,2,4);
+imhist(adjusted,256);
+
+<span class="comment">%histogram skumulowany</span>
+[H,x] = imhist(hist1);
+C = cumsum(H);
+k = max(C)/max(H);
+C2 = C/k;
+
+figure(7);
+plot(x,H);
+hold <span class="string">on</span>;
+plot(x,C2);
+hold <span class="string">off</span>;
+
+figure(8);
+subplot(2,1,1);
+imhist(adjusted,256);
+subplot(2,1,2);
+plot(x,C2);
+
+<span class="comment">%algorytm wyrownania</span>
+wsp = 255/max(C);
+LUT = C * wsp;
+LUT = uint8(LUT);
+
+figure
+subplot(1,3,1);
+plot(x,LUT);
+title(<span class="string">'Hist. obrazu'</span>);
+subplot(1,3,2);
+B = intlut(hist1,LUT);
+imshow(B);
+title(<span class="string">'Obraz'</span>);
+subplot(1,3,3);
+plot(x,C2);
+title(<span class="string">'skulumowany'</span>);
+
+figure
+subplot(1,2,1);
+imshow(B);
+title(<span class="string">'My LUT'</span>);
+subplot(1,2,2);
+histeq(hist1,256);
+title(<span class="string">'Funkcja Matlaba'</span>);
+
+
+
+histogram_2 = imread(<span class="string">'Histogram/hist2.bmp'</span>);
+histogram_3 = imread(<span class="string">'Histogram/hist3.bmp'</span>);
+histogram_4 = imread(<span class="string">'Histogram/hist4.jpg'</span>);
+histogram_2R = imadjust(histogram_2);
+histogram_3R = imadjust(histogram_3);
+histogram_4R = imadjust(histogram_4);
+histogram_2HE = histeq(histogram_2);
+histogram_3HE = histeq(histogram_3);
+histogram_4HE = histeq(histogram_4);
+histogram_2CL = adapthisteq(histogram_2);
+histogram_3CL = adapthisteq(histogram_3);
+histogram_4CL = adapthisteq(histogram_4);
+
+figure(11)
+subplot(3,4,1);
+imshow(histogram_4);
+title(<span class="string">'Original'</span>);
+subplot(3,4,2);
+imshow(histogram_4R);
+title(<span class="string">'Adjusted'</span>);
+subplot(3,4,3);
+imshow(histogram_4HE);
+title(<span class="string">'HE'</span>);
+subplot(3,4,4);
+imshow(histogram_4CL);
+title(<span class="string">'CLAHE'</span>);
+subplot(3,4,5);
+imshow(histogram_2);
+subplot(3,4,6);
+imshow(histogram_2R);
+subplot(3,4,7);
+imshow(histogram_2HE);
+subplot(3,4,8);
+imshow(histogram_2CL);
+subplot(3,4,9);
+imshow(histogram_3);
+subplot(3,4,10);
+imshow(histogram_3R);
+subplot(3,4,11);
+imshow(histogram_3HE);
+subplot(3,4,12);
+imshow(histogram_3CL);
+
+close <span class="string">all</span>;
+clear <span class="string">all</span>;
+
+moon = imread(<span class="string">'Histogram/phobos.bmp'</span>);
+hist = histeq(moon);
+figure(1)
+subplot(1,2,1);
+imshow(moon);
+title(<span class="string">'Basic img'</span>);
+subplot(1,2,2);
+imshow(hist);
+title(<span class="string">'Classic histEQ'</span>);
+
+load <span class="string">histogramZadany</span>;
+figure(2)
+subplot(1,2,2);
+hist2 = histeq(moon,histogramZadany);
+imshow(hist2);
+subplot(1,2,1);
+plot(histogramZadany);
+
+adjusted = imadjust(moon);
+clached = adapthisteq(moon);
+figure(3)
+subplot(1,2,1);
+imshow(adjusted);
+subplot(1,2,2);
+imshow(clached);
+</pre><img vspace="5" hspace="5" src="Total_01.png" alt=""> <img vspace="5" hspace="5" src="Total_02.png" alt=""> <img vspace="5" hspace="5" src="Total_03.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+clear all;
+close all;
+
+moon = imread('Histogram/phobos.bmp');
+[moon_hist  x] = imhist(moon);
+[sizeX sizeY] = size(moon);
+
+
+%%%%BBHE 
+mean_of_col = mean(moon);
+lm_bbhe = round(mean(mean_of_col));
+
+hist1_BBHE = moon_hist(1:lm_bbhe,:);
+hist2_BBHE = moon_hist(lm_bbhe+1:size(moon_hist),:);
+
+hist1_BBHE_cummulated = cumsum(hist1_BBHE);
+hist2_BBHE_cummulated = cumsum(hist2_BBHE);
+
+hist1_BBHE_normalised = hist1_BBHE_cummulated/max(hist1_BBHE_cummulated);
+hist2_BBHE_normalised = hist2_BBHE_cummulated/max(hist2_BBHE_cummulated);
+
+C1n = (lm_bbhe)*hist1_BBHE_normalised;
+C2n = lm_bbhe+1 + (255-lm_bbhe+1)*hist2_BBHE_normalised;
+lutBBHE = uint8([C1n; C2n]);
+
+phobosLUTBBHE = intlut(moon,lutBBHE);
+figure('name','BBHE');
+imshow(phobosLUTBBHE);
+
+
+%%%%%DSIHE
+
+
+ [valueDSIGE lm_DSIHE] = min( abs(cumsum(moon_hist)-(sizeX*sizeY/2)));
+ 
+ 
+% szukamy poziomu jasnoœci który odpowiada "po³owie" histogramu skumulowanego,
+% czyli jasnoœci, dla której jest mniej wiêcej tyle samo pikseli jaœniejszych 
+% co ciemniejszych.
+hist1_DSIGE = moon_hist(1:lm_DSIHE,:);
+hist2_DSIGE = moon_hist(lm_DSIHE+1:size(moon_hist),:);
+
+hist1_DSIGE_cummulated = cumsum(hist1_DSIGE);
+hist2_DSIGE_cummulated = cumsum(hist2_DSIGE);
+
+hist1_DSIGE_normalised = hist1_DSIGE_cummulated/max(hist1_DSIGE_cummulated);
+hist2_DSIGE_normalised = hist2_DSIGE_cummulated/max(hist2_DSIGE_cummulated);
+
+C1n = (lm_DSIHE)*hist1_DSIGE_normalised;
+C2n = lm_DSIHE+1 + (255-lm_DSIHE+1)*hist2_DSIGE_normalised;
+lutDSIGE = uint8([C1n; C2n]);
+
+phobosLUTDSIGE = intlut(moon,lutDSIGE);
+figure('name','DSIGE');
+imshow(phobosLUTDSIGE);
+
+clear all;
+close all;
+
+figure(1)
+lena1 = imread('Histogram/lena1.bmp');
+lena2 = imread('Histogram/lena2.bmp');
+lena3 = imread('Histogram/lena3.bmp');
+lena4 = imread('Histogram/lena4.bmp');
+subplot(4,2,1);
+imshow(lena1);
+title('lena1');
+subplot(4,2,2);
+imhist(lena1,256);
+
+subplot(4,2,3);
+imshow(lena2);
+title('lena2');
+subplot(4,2,4);
+imhist(lena2,256);
+
+subplot(4,2,5);
+imshow(lena3);
+title('lena3');
+subplot(4,2,6);
+imhist(lena3,256);
+
+subplot(4,2,7);
+imshow(lena4);
+title('lena4');
+subplot(4,2,8);
+imhist(lena4,256);
+
+hist1 = imread('Histogram/hist1.bmp');
+figure(2)
+subplot(2,2,1);
+imshow(hist1);
+subplot(2,2,3);
+imhist(hist1,256);
+
+adjusted = imadjust(hist1);
+subplot(2,2,2);
+imshow(adjusted);
+subplot(2,2,4);
+imhist(adjusted,256);
+
+%histogram skumulowany
+[H,x] = imhist(hist1);
+C = cumsum(H);
+k = max(C)/max(H);
+C2 = C/k;
+
+figure(7);
+plot(x,H);
+hold on; 
+plot(x,C2);
+hold off;
+
+figure(8);
+subplot(2,1,1);
+imhist(adjusted,256);
+subplot(2,1,2);
+plot(x,C2);
+
+%algorytm wyrownania
+wsp = 255/max(C);
+LUT = C * wsp;
+LUT = uint8(LUT);
+
+figure 
+subplot(1,3,1);
+plot(x,LUT);
+title('Hist. obrazu');
+subplot(1,3,2);
+B = intlut(hist1,LUT);
+imshow(B);
+title('Obraz');
+subplot(1,3,3);
+plot(x,C2);
+title('skulumowany');
+
+figure
+subplot(1,2,1);
+imshow(B);
+title('My LUT');
+subplot(1,2,2);
+histeq(hist1,256);
+title('Funkcja Matlaba');
+
+
+
+histogram_2 = imread('Histogram/hist2.bmp');
+histogram_3 = imread('Histogram/hist3.bmp');
+histogram_4 = imread('Histogram/hist4.jpg');
+histogram_2R = imadjust(histogram_2);
+histogram_3R = imadjust(histogram_3);
+histogram_4R = imadjust(histogram_4);
+histogram_2HE = histeq(histogram_2);
+histogram_3HE = histeq(histogram_3);
+histogram_4HE = histeq(histogram_4);
+histogram_2CL = adapthisteq(histogram_2);
+histogram_3CL = adapthisteq(histogram_3);
+histogram_4CL = adapthisteq(histogram_4);
+
+figure(11)
+subplot(3,4,1);
+imshow(histogram_4);
+title('Original');
+subplot(3,4,2);
+imshow(histogram_4R);
+title('Adjusted');
+subplot(3,4,3);
+imshow(histogram_4HE);
+title('HE');
+subplot(3,4,4);
+imshow(histogram_4CL);
+title('CLAHE');
+subplot(3,4,5);
+imshow(histogram_2);
+subplot(3,4,6);
+imshow(histogram_2R);
+subplot(3,4,7);
+imshow(histogram_2HE);
+subplot(3,4,8);
+imshow(histogram_2CL);
+subplot(3,4,9);
+imshow(histogram_3);
+subplot(3,4,10);
+imshow(histogram_3R);
+subplot(3,4,11);
+imshow(histogram_3HE);
+subplot(3,4,12);
+imshow(histogram_3CL);
+
+close all;
+clear all;
+
+moon = imread('Histogram/phobos.bmp');
+hist = histeq(moon);
+figure(1)
+subplot(1,2,1);
+imshow(moon);
+title('Basic img');
+subplot(1,2,2);
+imshow(hist);
+title('Classic histEQ');
+
+load histogramZadany;
+figure(2)
+subplot(1,2,2);
+hist2 = histeq(moon,histogramZadany);
+imshow(hist2);
+subplot(1,2,1);
+plot(histogramZadany);
+
+adjusted = imadjust(moon);
+clached = adapthisteq(moon);
+figure(3)
+subplot(1,2,1);
+imshow(adjusted);
+subplot(1,2,2);
+imshow(clached);
+##### SOURCE END #####
+--></body></html>
