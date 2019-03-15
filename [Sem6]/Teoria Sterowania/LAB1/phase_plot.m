@@ -1,27 +1,34 @@
 close all;
 clear all;
-ArrowSize = 4;
-A = [-2 0; 0 -2];
-tspan = [-1 1];
-[w J] = eig(A)
+A = [-2 0; 1 -2];%zadana macierz
+tspan = -1:0.001:1;
+[w J] = eig(A);%wektory w³asne oraz wartoœci w³asne
+y_history = [];
+x1_x2_ = [];
+x1_x2__ = [];
 figure(1)
-hold on
+hold on;
+
 name = strcat('lambda (A)=[',num2str(J(1,1)),', ',num2str(J(2,2)),']');
-tic
+
 for i=-2:0.5:2
     for j=-2:2:2
     y0 = [i j];
+    y_history = [y_history;y0];
     [t,y] = ode45(@(t,y) fun(t,y,A), tspan, y0);
-    x_1 = y(:,1);
-    x_2 = y(:,2);
-    plot(x_1,x_2,'-b');
-    plot(i,j,'*');
+    x1_x2_ = [x1_x2_;y];
+    x1_x2__ = [x1_x2__; x1_x2_(end,:)];
     grid on;
     end
 end
-plot([0,w(1,1)],[0,w(2,1)],'r-',[0,w(1,2)],[0,w(2,2)],'r-')
-toc
+plot(y_history(:,1),y_history(:,2),'r*','DisplayName','Punkt pocz¹tkowy');
+plot(x1_x2_(:,1),x1_x2_(:,2),'.','DisplayName','Trajektorie');
+plot(x1_x2__(:,1),x1_x2__(:,2),'y*','DisplayName','Punkt koñcowy');
+plot([0,w(1,1)],[0,w(2,1)],'g-','DisplayName','w1','LineWidth',2)
+plot([0,w(1,2)],[0,w(2,2)],'g-','DisplayName','w2','LineWidth',2)
 title(name);
 grid on;
+legend show;
+set(legend, 'Location', 'Best')
 xlabel('x1');ylabel('x2');
-saveas(1,name,'png')
+saveas(1,name,'emf')
