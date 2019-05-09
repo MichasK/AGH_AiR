@@ -1,0 +1,24 @@
+clear all;close all;
+n = 14;
+matrixMY = [40-n, 10+n;
+    60-n, 30+n;
+    60, 20;
+    10, 30;
+    20+n, 5;
+    30, 20+n;
+    40-n, 25]; 
+Q1 = matrixMY(:,1);
+Q2 = -matrixMY(:,2);
+dQ12 = Q1 + Q2;
+i = length(Q1);
+a = 1:1:i;  
+figure(1);
+hold on; 
+plot(Q1, Q2, 'g*'); xlabel('Q_1');ylabel('Q_2'); grid on; hold off;
+figure(2); plot(a, dQ12, 'g*');
+[Q1w, Q2w, tmp] = space(Q1, Q2, a)
+matrixMY = [Q1w; Q2w; tmp];  
+figure(3); hold on; plot(Q1, -Q2, 'go');
+plot(Q1w, -Q2w, 'b+');
+xlabel('Q_1');ylabel('Q_2');
+grid on; hold off;
