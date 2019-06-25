@@ -1,0 +1,34 @@
+Aha: Grega podawa³ na ostatnim wyk³adzie przyk³adowe zadania, jedno z Nich ¿ywcem powtórzy³o siê na egzaminie.
+
+Przyk³adowe zadania jakie podawa³ by³y takie: 
+
+1. Czy rozwi¹zanie zadania: minimum z sumy po i=1..N 1/xi na zbiorze X = { x: Ax<=b , b>=0, xi>0 } jest globalne ? OdowiedŸ: TAK, bo: trzeba powo³aæ siê na tw. o minimum funkcji wypuk³ej na zbiorze wypuk³ym. W tym przypadku mamy wypuk³¹ funkcjê celu i wypuk³e ograniczenia. 
+
+2. Wykazaæ, ¿e Algorytm Newtona-Rapsona zastosowany dla funkcji (x-3)^2 + 4(y-2)^2 pozwoli osi¹gn¹æ minimum w 1 kroku : Rozwi¹zanie : mo¿na powo³aæ siê na w³asnoœæ/twierdzenie, ¿e algorytm newtona-rapsona zastosowany dla funkcji kwadratowej osi¹ga minimum w 1 kroku albo po prostu przeliczyæ jeden krok zgodnie ze wzorem dla punktu startowego (x0, y0) i zobaczyc, ze wynik nie zalezy od punktu startowego i ze w tym punkcie gradient siê zeruje. 
+
+3. Sformu³owaæ warunki Kuhna-Tuckera dla zadania: max(F(x)) , hi(x)<=0 dla i=1...p  OdpowiedŸ: 1. gradient po x L(x,lambda) = 0 , 2. gradient po lambda L(x,lambda)<=0 3 . lambda transponowane * h(x) = 0 4. lambda <=0 
+
+4. Wykorzystuj¹c mno¿niki Lagrange'a znaleŸæ punkty ekstremalne funkcji F(x)=x1*x2, na zbiorze dopuszczalnym x1^2 + x2^2 = 1.
+
+5. Rozwi¹zaæ z wykorzystaniem metody wewnêtrznej funkcji kary : min{1/3(x1+1)^3 +x2} x1>=1, x2>=0 
+
+Egzamin wygl¹da tak: Grega wyœwietla pytanie przy pomocy swojego mini - laptopa i rzutnika, czeka jakieœ 10 minut i potem wyœwietla nastêpne. Pytañ jest 5, nie wraca do poprzednich. Na ogó³ przechodzi³ do nastêpnego jak zauwa¿y³, ¿e Ci co umieli skoñczyli, a Ci co nie umieli odpisuj¹. Ocenia³ pytania w skali 0-2 (Jeœli dobrze - 2 pkt, jeœli widaæ, ¿e wiesz jak ma byæ ale masz jakiœ (niedu¿y) b³¹d 1, jeœli coœ namiesza³eœ albo nie wiesz, to 0). 
+
+Pytania by³y takie mniej wiêcej:  (Mogê coœ przekrêciæ, bo to by³o dawno, a wiedza ta jest tak zajebiœcie przydatna, ¿e ju¿ nic nie pamiêtam)
+
+1. Pytanie 1 z przyk³adowych zadañ podanych na wyk³adzie (patrz wy¿ej). 
+
+2. Nie jestem pewien, ale chodzi³o chyba o Tw 5.1 z wyk³adów Gregi (o sposobie generowania kierunków sprzê¿onych) W skrócie trzeba by³o je udowodniæ.
+
+3. Podaæ warunki K-T  dla jakiejœ funkcji
+
+4. Podaj definicjê odstêpu dualnego (mam nadziejê, ¿e nie przekrêci³em terminu) 
+
+5. Tu by³o pytanie dla hazardzistów: testowe. Dotyczy³o funkcji kary: Który z podanych warunków musi spe³niaæ funkcja kary ?(nie pamiêtam, czy zewn, czy wewn.) Pamiêtam, ¿e by³o 5 mo¿liwych odpowiedzi: 1 g³upia , natomiast 2 ró¿ni³y siê tylko tym, ze w jednym by³o znak 'mniejsze', a w drugim 'mniejsze lub równe' i to by³a bardzo œliska sprawa. By³a te¿ odpowiedŸ 'wszystkie powy¿sze' i 'nie wiem'. Punktowa³ tak: Odpowiedzia³eœ dobrze: 2pkt, Ÿle: -1pkt, mog³eœ te¿ daæ 'nie wiem' i wtedy mia³eœ 0. 
+
+
+Poza tym ulubione zagadnienia Gregi, to war. Kuhna-Tuckera ( ale lubi coœ pozmieniaæ w postaci funkcji celu wzglêdem tego, co jest na wyk³adzie, np. zamienia znak > na < itp.) i jeszcze lubi chyba (ale tego nie jestem pewien...) problem dualny. Pani od æwiczeñ mówi³a (nie wiem na ile potwierdzone Ÿród³a mia³a), ¿e warunki K-T s¹ zawsze... ju¿ nied³ugo sam siê przekonacz, czy mówi³a prawdê :) ... Powodzenia. 
+
+Pozdrawiam!
+
+PM

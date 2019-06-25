@@ -1,0 +1,7 @@
+
+1. Pixel klasa: x,y, zajęty
+2. Jeden duży task określejacy pozycje robota, poszukanmie na grafie (wszystkie skrzyzowania) wyznaczenie drogi do najbliższego skrzyżowania
+po dojsciu do skrzyzowania, musi znaleźć ścieżki do najdalszego skrzyzowania, od ostatnuiego skrzyżowania do punktu koncowego
+3. Robot sasiectwo - wybieranie sasiada
+4 Nawigator - wszystkie informacje od grupie,o pozycji
+Ro

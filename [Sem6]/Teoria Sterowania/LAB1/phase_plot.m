@@ -1,6 +1,6 @@
 close all;
 clear all;
-A = [-2 0; 1 -2];%zadana macierz
+A = [5 0; 0 0];%zadana macierz
 tspan = -1:0.001:1;
 [w J] = eig(A);%wektory w³asne oraz wartoœci w³asne
 y_history = [];
